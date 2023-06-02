@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>식당 목록</title>
+</head>
+<body>
+<h1>식당목록</h1>
+<a href="/">돌아가기</a>
+<div>
+    <form method="get">
+        <select name="searchType">
+            <option value="all">전체</option>
+            <option th:selected="${#strings.equals(param.searchType, 'name')}" value="name">매장이름</option>
+            <option th:selected="${#strings.equals(param.searchType, 'location')}" value="location">위치</option>
+        </select>
+
+        <input th:value="${param.searchValue}" type="text" name="searchValue"/>
+        <button type="submit">검색</button>
+    </form>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>이름</th>
+        <th>위치</th>
+        <th>설명</th>
+    </tr>
+    </thead>
+    <tr th:each="x : ${list}">
+        <td>
+            <a th:text="${x.name}" th:href="${'detail?id=' + x.id}">김밥집</a>
+        </td>
+        <td th:text="${x.location}">마포</td>
+        <td th:text="${x.content}">맛있는 김밥집</td>
+    </tr>
+
+
+    <tbody>
+
+    </tbody>
+</table>
+</body>
+</html>

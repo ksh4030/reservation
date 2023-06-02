@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>식당 상세 정보</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(function (){
+
+            $('#submitForm').on('submit', function (){
+
+                if(!confirm('예약을 하시겠습니까?')) {
+                    return false;
+                }
+
+                var $thisForm = $(this);
+
+                var url='/api/restaurant/req.api';
+                var parameter={
+                    restaurantId: $thisForm.find('input[name=id]').val(),
+                    date: $thisForm.find('input[name=date]').val()
+                };
+                axios.post(url, parameter).then(function (response){
+
+                    console.log(response);
+
+                    var msg = response.data || '';
+
+                    if(msg != '') {
+                        alert(msg);
+                    }
+
+                }).catch(function (err){
+                    console.log(err);
+                });
+
+                return false;
+            })
+        });
+    </script>
+
+</head>
+<body>
+<h1>식당 상세 화면</h1>
+<a href="/restaurant/list">돌아가기</a>
+
+
+<div>
+    <table>
+        <tbody>
+        <tr>
+            <td>이름 :</td>
+            <td th:text="${member.name}"></td>
+        </tr>
+        <tr>
+            <td>위치 :</td>
+            <td th:text="${member.location}"></td>
+        </tr>
+        <tr>
+            <td>식당 설명 :</td>
+            <td th:text="${member.content}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form id="submitForm" method="post">
+        <input type="datetime-local" name="date">
+        <input type="hidden" name="id" th:value="${member.id}"/>
+        <button type="submit">예약 하기</button>
+    </form>
+</div>
+
+</body>
+</html>

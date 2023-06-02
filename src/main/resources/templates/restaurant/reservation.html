@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 확인</title>
+</head>
+<body>
+<h1>예약 확인</h1>
+<a href="/">돌아가기</a>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>예약자 이름</th>
+            <th>예약자 번호</th>
+            <th>예약 시간</th>
+            <th>예약 상태</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="x : ${list}">
+            <td th:text="${x.getName()}"></td>
+            <td th:text="${x.getPhone()}"></td>
+            <td th:text="${x.getDate()}"></td>
+            <td>
+                <p th:if="${x.getStatus() eq 'REQ'}">예약대기</p>
+                <p th:if="${x.getStatus() eq 'COMPLETE'}">예약완료</p>
+                <p th:if="${x.getStatus() eq 'CANCEL'}">예약취소</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

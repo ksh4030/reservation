@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.reservation.restaurant.mapper.RestaurantMapper">
+
+    <select id="selectList"
+            parameterType="com.example.reservation.restaurant.model.RestaurantParam"
+            resultType="com.example.reservation.restaurant.dto.RestaurantDto">
+
+        select *
+        from restaurant
+        where 1=1
+
+        <if test="searchType != null and searchValue != null">
+            <choose>
+                <when test="searchType=='name'">
+                    and name like concat('%', #{searchValue}, '%')
+                </when>
+
+                <when test="searchType == 'location'">
+                    and location like concat('%', #{searchValue}, '%')
+                </when>
+                <otherwise>
+                    and (
+                        name like concat('%', #{searchValue}, '%')
+                        or
+                        location like concat('%', #{searchValue}, '%')
+                        )
+                </otherwise>
+            </choose>
+        </if>
+
+    </select>
+
+</mapper>

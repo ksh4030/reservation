@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${result}">
+  <h1>리뷰를 등록하였습니다.</h1>
+  <a href="/">돌아가기</a>
+</div>
+
+<div th:if="${result eq false}">
+  <h1>리뷰 등록에 샐패하였습니다.</h1>
+  <a href="/review">다시 등록하기</a>
+</div>
+</body>
+</html>

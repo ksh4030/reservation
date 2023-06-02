@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(function (){
+
+            $('.row-buttons button').on('click', function (){
+
+                var status = $(this).val();
+                var id = $(this).closest('div').find('input[name=id]').val();
+
+                var msg = status == 'COMPLETE' ? '예약을 수락하시겠습니까?' : '예약을 취소하겠습니까?'
+
+                if(!confirm(msg)) {
+                    return false;
+                }
+
+                var $changeStatusForm = $('#changeStatusForm');
+                $changeStatusForm.find('input[name=id]').val(id);
+                $changeStatusForm.find('input[name=status]').val(status);
+                $changeStatusForm.submit();
+
+            })
+
+        })
+    </script>
+</head>
+<body>
+<h1>예약 확인</h1>
+<div>
+    <a href="/">홈</a>
+    <a href="/partner">파트너 공간</a>
+    <a href="/partner/restaurant">식당 등록</a>
+    <a href="/partner/reservation">예약 확인</a>
+</div>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>예약자 이름</th>
+            <th>예약자 전화번호</th>
+            <th>예약 날짜</th>
+            <th>상태</th>
+            <th>예약 확인</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="x : ${list}">
+            <td th:text="${x.getName()}">홍길동</td>
+            <td th:text="${x.getPhone()}">01066934030</td>
+            <td th:text="${x.getDate()}">2023-01-01 22:22:22</td>
+            <td>
+                <p th:if="${x.getStatus() eq 'REQ'}">예약대기</p>
+                <p th:if="${x.getStatus() eq 'COMPLETE'}">예약완료</p>
+                <p th:if="${x.getStatus() eq 'CANCEL'}">예약취소</p>
+            </td>
+            <td>
+                <div class="row-buttons" th:if="${x.getStatus() eq 'REQ'}">
+                    <input type="hidden" name="id" th:value="${x.id}">
+                    <button value="COMPLETE" type="button">예약확인</button>
+                    <button value="CANCEL" type="button" >예약취소</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<form id="changeStatusForm" method="post" action="/partner/reservation/status">
+    <input type="hidden" name="id">
+    <input type="hidden" name="status">
+</form>
+</body>
+</html>

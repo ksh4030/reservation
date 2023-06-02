@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>리뷰 작성</h1>
+
+<div th:if="${result eq false}">
+    <h1>등록할 수 있는 리뷰가 없습니다.</h1>
+</div>
+
+<div th:if="${result}">
+    <form method="post">
+        <input type="text" name="comment"/>
+        <button type="submit">확인</button>
+    </form>
+</div>
+
+<a href="/">돌아가기</a>
+</body>
+</html>

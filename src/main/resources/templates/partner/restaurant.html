@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>식당관리</title>
+</head>
+<body>
+<h1>식당 등록</h1>
+<div>
+    <a href="/">홈</a>
+    <a href="/partner">파트너 공간</a>
+    <a href="/partner/restaurant">식당 등록</a>
+    <a href="/partner/reservation">예약 확인</a>
+</div>
+<hr/>
+<div>
+    <form method="post">
+        <table>
+            <tbody>
+            <tr>
+                <th>파트너 아이디 :</th>
+                <td>
+                    <input type="text" name="userId" required>
+                </td>
+            </tr>
+            <tr>
+                <th>식당 이름 :</th>
+                <td>
+                    <input type="text" name="name" required>
+                </td>
+            </tr>
+            <tr>
+                <th>식당 위치 :</th>
+                <td>
+                    <input type="text" name="location" required>
+                </td>
+            </tr>
+            <tr>
+                <th>식당 소개 :</th>
+                <td>
+                    <input type="text" name="content" required>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="submit">식당 등록</button>
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>
