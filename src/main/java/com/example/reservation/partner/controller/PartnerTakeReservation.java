@@ -1,7 +1,6 @@
 package com.example.reservation.partner.controller;
 
 import com.example.reservation.entity.Reservation;
-import com.example.reservation.partner.dto.TakeReservationDto;
 import com.example.reservation.partner.model.TakeReservationParam;
 import com.example.reservation.partner.service.TakeReservationService;
 import com.example.reservation.restaurant.service.ServiceResult;
@@ -43,7 +42,7 @@ public class PartnerTakeReservation {
     public String changeStatus(Model model, TakeReservationParam parameter) {
 
         ServiceResult result = takeReservationService.updateStatus(parameter.getId(), parameter.getStatus());
-        if(!result.isResult()) {
+        if (!result.isResult()) {
             return "error/error";
         }
 

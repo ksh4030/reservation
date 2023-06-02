@@ -1,6 +1,5 @@
 package com.example.reservation.restaurant.controller;
 
-import com.example.reservation.entity.Restaurant;
 import com.example.reservation.restaurant.dto.RestaurantDto;
 import com.example.reservation.restaurant.model.RestaurantParam;
 import com.example.reservation.restaurant.service.RestaurantService;

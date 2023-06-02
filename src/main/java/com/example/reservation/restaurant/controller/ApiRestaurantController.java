@@ -2,14 +2,12 @@ package com.example.reservation.restaurant.controller;
 
 
 import com.example.reservation.entity.User;
-import com.example.reservation.member.model.UserInput;
 import com.example.reservation.member.repository.UserRepository;
 import com.example.reservation.member.service.UserService;
 import com.example.reservation.restaurant.model.TakeRestaurantInput;
 import com.example.reservation.restaurant.service.RestaurantService;
 import com.example.reservation.restaurant.service.ServiceResult;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +39,7 @@ public class ApiRestaurantController {
 
         ServiceResult result = restaurantService.req(parameter);
 
-        if(!result.isResult()){
+        if (!result.isResult()) {
             return ResponseEntity.ok().body(result.getMessage());
         }
 
