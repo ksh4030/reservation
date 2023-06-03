@@ -17,6 +17,7 @@ public class KioskServiceImpl implements KioskService{
     private final TakeReservationRepository takeReservationRepository;
     private final ReviewRepository reviewRepository;
 
+    //키오스크에서 예약자 방문을 확인하고 예약자 정보가 일치하면 리뷰를 남길 수 있도록 데이터베이스에 저장
     @Override
     public boolean checkReservation(KioskUserInput parameter) {
 

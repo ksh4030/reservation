@@ -26,6 +26,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 
     private final RestaurantMapper restaurantMapper;
 
+    //파트너가 식당 정보를 등록
     @Override
     public boolean add(RestaurantInput parameter) {
 
@@ -41,6 +42,7 @@ public class RestaurantServiceImpl implements RestaurantService{
         return true;
     }
 
+    //등록된 식당 목록을 보여줌
     @Override
     public List<RestaurantDto> list(RestaurantParam parameter) {
 
@@ -49,6 +51,7 @@ public class RestaurantServiceImpl implements RestaurantService{
         return list;
     }
 
+    //식당 리스트의 자세한 화면
     @Override
     public RestaurantDto detail(Long id) {
 
@@ -63,6 +66,7 @@ public class RestaurantServiceImpl implements RestaurantService{
         return RestaurantDto.of(restaurant);
     }
 
+    //사용자 예약
     @Override
     public ServiceResult req(TakeRestaurantInput parameter) {
 
@@ -71,7 +75,7 @@ public class RestaurantServiceImpl implements RestaurantService{
         Optional<Restaurant> optionalRestaurant = restaurantRepository.findById(parameter.getRestaurantId());
         if(!optionalRestaurant.isPresent()) {
             result.setResult(false);
-            result.setMessage("강좌 정보가 존재하지 않습니다.");
+            result.setMessage("예약 정보가 존재하지 않습니다.");
             return result;
         }
 

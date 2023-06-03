@@ -22,7 +22,6 @@ public class ApiRestaurantController {
 
     private final RestaurantService restaurantService;
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @PostMapping("/api/restaurant/req.api")
     public ResponseEntity<?> restaurantReq(Model model,

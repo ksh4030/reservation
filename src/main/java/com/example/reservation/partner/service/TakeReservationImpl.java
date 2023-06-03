@@ -15,13 +15,14 @@ import java.util.Optional;
 public class TakeReservationImpl implements TakeReservationService{
 
     private final TakeReservationRepository takeReservationRepository;
-    private final RestaurantRepository restaurantRepository;
 
+    //모든 예약 정보를 불러옴
     @Override
     public List<Reservation> list() {
         return takeReservationRepository.findAll();
     }
 
+    //파트너가 예약을 수락/거절 함
     @Override
     public ServiceResult updateStatus(long id, String status) {
 

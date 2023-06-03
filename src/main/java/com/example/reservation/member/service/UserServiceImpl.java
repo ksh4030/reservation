@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
 
+    //회원가입
     @Override
     public boolean register(UserInput parameter) {
 
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
+    //ROLE 부여
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> optionalUser = userRepository.findById(username);
